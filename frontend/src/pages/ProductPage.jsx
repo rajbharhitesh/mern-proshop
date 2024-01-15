@@ -2,6 +2,8 @@ import { Link, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import { useGetProductDetailsQuery } from '../redux/api/productApi';
 import Rating from '../components/Rating';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const ProductPage = () => {
   const { id: productId } = useParams();
@@ -18,9 +20,11 @@ const ProductPage = () => {
         Go Back
       </Link>
       {isLoading ? (
-        <>Loading...</>
+        <Loader />
       ) : error ? (
-        <>{error?.data?.message || error.error}</>
+        <Message variant="danger">
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <>
           <Row className="my-5">

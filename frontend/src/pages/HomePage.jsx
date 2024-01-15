@@ -1,6 +1,8 @@
 import { Row, Col } from 'react-bootstrap';
 import { useGetProductsQuery } from '../redux/api/productApi';
 import Product from '../components/Product';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const HomePage = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -8,9 +10,11 @@ const HomePage = () => {
   return (
     <>
       {isLoading ? (
-        <>Loading</>
+        <Loader />
       ) : error ? (
-        <>{error.data.message || error.error}</>
+        <Message variant="danger">
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <>
           <h1 className="text-center">Latest Products</h1>
