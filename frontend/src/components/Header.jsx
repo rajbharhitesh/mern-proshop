@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../redux/api/userApiSlice';
 import { logout } from '../redux/features/authSlice';
+import { resetCart } from '../redux/features/cartSlice';
 import logo from '../assets/logo.png';
 
 const Header = () => {
@@ -20,6 +21,7 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
+      dispatch(resetCart());
 
       navigate('/login');
     } catch (err) {
