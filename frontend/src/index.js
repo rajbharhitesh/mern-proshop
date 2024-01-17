@@ -11,10 +11,11 @@ import './assets/styles/bootstrap.custom.css';
 import './assets/styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import store from './redux/store';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
-import store from './redux/store';
 import CartPage from './pages/CartPage';
+import LoginPage from './pages/LoginPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<HomePage />} />
       <Route path="/product/:id" element={<ProductPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Route>
   )
 );
