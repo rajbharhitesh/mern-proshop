@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
-import { useGetProductDetailsQuery } from '../redux/api/productApi';
+import { useGetProductDetailsQuery } from '../redux/api/productApiSlice';
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
