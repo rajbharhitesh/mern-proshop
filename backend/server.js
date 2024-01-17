@@ -8,7 +8,7 @@ dotenv.config();
 
 // import all routes
 import productRoute from './routes/productRoute.js';
-import userRoute from './routes/usrRoute.js';
+import userRoute from './routes/userRoute.js';
 
 const PORT = process.env.PORT || 5000;
 const app = express();
