@@ -34,6 +34,7 @@ const LoginPage = () => {
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
+      toast.success('Login Successfull');
       navigate(redirect);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
@@ -42,7 +43,7 @@ const LoginPage = () => {
 
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1 className="text-center">Sign In</h1>
 
       <Form onSubmit={submitHandler}>
         <Form.Group className="my-2" controlId="email">
@@ -65,7 +66,12 @@ const LoginPage = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button disabled={isLoading} type="submit" variant="primary">
+        <Button
+          disabled={isLoading}
+          type="submit"
+          variant="primary"
+          className="w-100"
+        >
           Sign In
         </Button>
 
