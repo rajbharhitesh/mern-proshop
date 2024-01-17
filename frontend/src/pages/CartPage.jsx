@@ -35,7 +35,9 @@ const CartPage = () => {
   return (
     <Row>
       <Col md={8}>
-        <h1 style={{ marginBottom: '20px' }}>Shopping Cart</h1>
+        <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>
+          Shopping Cart
+        </h1>
         {cartItems.length === 0 ? (
           <Message>
             Your cart is empty <Link to="/">Go Back</Link>
@@ -49,9 +51,13 @@ const CartPage = () => {
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
                   <Col md={3}>
-                    <Link to={`/product/${item._id}`}>{item.name}</Link>
+                    <Link to={`/product/${item._id}`}>
+                      <strong>{item.name}</strong>
+                    </Link>
                   </Col>
-                  <Col md={2}>${item.price}</Col>
+                  <Col md={2}>
+                    $<strong>{item.price}</strong>
+                  </Col>
                   <Col md={2}>
                     <Form.Control
                       as="select"
@@ -87,18 +93,24 @@ const CartPage = () => {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                items
+                Subtotal (
+                {cartItems.reduce(
+                  (acc, item) => Number(acc) + Number(item.qty),
+                  0
+                )}
+                ) items
               </h2>
               $
-              {cartItems
-                .reduce((acc, item) => acc + item.qty * item.price, 0)
-                .toFixed(2)}
+              <strong>
+                {cartItems
+                  .reduce((acc, item) => acc + item.qty * item.price, 0)
+                  .toFixed(2)}
+              </strong>
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
                 type="button"
-                className="btn-block"
+                className="btn-block w-100"
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >

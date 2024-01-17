@@ -103,7 +103,9 @@ const ProductPage = () => {
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row>
-                        <Col>Qty</Col>
+                        <Col>
+                          <strong>Qty:</strong>
+                        </Col>
                         <Col>
                           <Form.Control
                             as="select"
