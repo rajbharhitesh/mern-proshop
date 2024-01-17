@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 import Message from '../components/Message';
-import { addToCart, removeFromCart } from '../slices/cartSlice';
+import { addToCart, removeFromCart } from '../redux/features/cartSlice';
 
 const CartPage = () => {
   const navigate = useNavigate();

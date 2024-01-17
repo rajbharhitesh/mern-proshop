@@ -11,7 +11,7 @@ import {
 import { useGetProductDetailsQuery } from '../redux/api/productApiSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { addToCart } from '../slices/cartSlice';
+import { addToCart } from '../redux/features/cartSlice';
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -125,6 +125,7 @@ const ProductPage = () => {
 
                   <ListGroup.Item>
                     <Button
+                      onClick={addToCartHandler}
                       className="btn btn-block w-100"
                       type="button"
                       disabled={product?.countInStock === 0}
