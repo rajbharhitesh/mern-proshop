@@ -10,6 +10,7 @@ dotenv.config();
 // import all routes
 import productRoute from './routes/productRoute.js';
 import userRoute from './routes/userRoute.js';
+import orderRoute from './routes/orderRoute.js';
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -23,6 +24,7 @@ connectDB();
 
 app.use('/api/products', productRoute);
 app.use('/api/users', userRoute);
+app.use('/api/orders', orderRoute);
 
 app.use(notFound);
 app.use(errorHandler);
