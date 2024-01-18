@@ -20,10 +20,12 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ShippingPage from './pages/ShippingPage';
 import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
 import PaymentPage from './pages/PaymentPage';
 import PlaceorderPage from './pages/PlaceorderPage';
 import OrderPage from './pages/OrderPage';
 import ProfilePage from './pages/ProfilePage';
+import OrderListPage from './pages/admin/OrderListPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +42,10 @@ const router = createBrowserRouter(
         <Route path="/placeorder" element={<PlaceorderPage />} />
         <Route path="/order/:id" element={<OrderPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+      </Route>
+
+      <Route path="" element={<AdminRoute />}>
+        <Route path="/admin/orderlist" element={<OrderListPage />} />
       </Route>
     </Route>
   )

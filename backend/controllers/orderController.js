@@ -116,7 +116,10 @@ const updateOrderToDeliver = asyncHandler(async (req, res) => {});
  * @method  GET
  * @access  Private  ---- ADMIN
  ------------------------------------------------*/
-const getOrders = asyncHandler(async (req, res) => {});
+const getOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({}).populate('user', 'id name');
+  res.json(orders);
+});
 
 export {
   addOrderItems,
