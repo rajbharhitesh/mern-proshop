@@ -10,7 +10,7 @@ const OrderListPage = () => {
 
   return (
     <>
-      <h1>Orders</h1>
+      <h1 className="text-center">Orders</h1>
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -34,7 +34,7 @@ const OrderListPage = () => {
             {orders.map((order) => (
               <tr key={order._id}>
                 <td>{order._id}</td>
-                <td>{order.user && order.user.name}</td>
+                <td>{order.user.name}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>${order.totalPrice}</td>
                 <td>
