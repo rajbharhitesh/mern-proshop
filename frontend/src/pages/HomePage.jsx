@@ -1,6 +1,6 @@
 import { Row, Col } from 'react-bootstrap';
 import { useGetProductsQuery } from '../redux/api/productApiSlice';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Product from '../components/Product';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -16,6 +16,11 @@ const HomePage = () => {
 
   return (
     <>
+      {keyword && (
+        <Link to="/" className="btn btn-light">
+          Go Back
+        </Link>
+      )}
       {isLoading ? (
         <Loader />
       ) : error ? (
