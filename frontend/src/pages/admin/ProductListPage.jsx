@@ -1,12 +1,30 @@
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
 import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
-import { useGetProductsQuery } from '../../redux/api/productApiSlice';
+import { toast } from 'react-hot-toast';
+import {
+  useGetProductsQuery,
+  useCreateProductMutation,
+} from '../../redux/api/productApiSlice';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 
 const ProductListPage = () => {
-  const { data: products, isLoading, error } = useGetProductsQuery();
+  const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+
+  const [createProduct, { isLoading: loadingCreate }] =
+    useCreateProductMutation();
+
+  const createProductHandler = async () => {
+    if (window.confirm('Are you sure you want to create a new product?')) {
+      try {
+        await createProduct();
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
+  };
 
   return (
     <>
@@ -16,11 +34,12 @@ const ProductListPage = () => {
           <h1>Products</h1>
         </Col>
         <Col className="text-end">
-          <Button className="btn-sm m-3">
+          <Button className="my-3" onClick={createProductHandler}>
             <FaPlus /> Create Product
           </Button>
         </Col>
       </Row>
+      {loadingCreate && <Loader />}
       {isLoading ? (
         <Loader />
       ) : error ? (
