@@ -19,6 +19,7 @@ import { toast } from 'react-hot-toast';
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 
 const ProductPage = () => {
   const { id: productId } = useParams();
@@ -78,6 +79,7 @@ const ProductPage = () => {
         </Message>
       ) : (
         <>
+          <Meta title={product.name} description={product.description} />
           <Row className="my-5">
             <Col md={5}>
               <Image src={product?.image} alt={product?.name} fluid />
