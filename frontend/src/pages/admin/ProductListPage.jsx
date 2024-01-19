@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import {
   useGetProductsQuery,
   useCreateProductMutation,
+  useDeleteProductMutation,
 } from '../../redux/api/productApiSlice';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
@@ -15,10 +16,24 @@ const ProductListPage = () => {
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
 
+  const [deleteProduct, { isLoading: loadingDelete }] =
+    useDeleteProductMutation();
+
   const createProductHandler = async () => {
     if (window.confirm('Are you sure you want to create a new product?')) {
       try {
         await createProduct();
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
+  };
+
+  const deleteHandler = async (id) => {
+    if (window.confirm('Are you sure')) {
+      try {
+        await deleteProduct(id);
         refetch();
       } catch (err) {
         toast.error(err?.data?.message || err.error);
@@ -40,6 +55,7 @@ const ProductListPage = () => {
         </Col>
       </Row>
       {loadingCreate && <Loader />}
+      {loadingDelete && <Loader />}
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -71,7 +87,11 @@ const ProductListPage = () => {
                         <FaEdit />
                       </Button>
                     </LinkContainer>
-                    <Button variant="danger" className="btn-sm">
+                    <Button
+                      variant="danger"
+                      className="btn-sm"
+                      onClick={() => deleteHandler(product._id)}
+                    >
                       <FaTrash style={{ color: 'white' }} />
                     </Button>
                   </td>
