@@ -5,6 +5,7 @@ import Product from '../components/Product';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
+import ProductCarousel from '../components/ProductCarousel';
 
 const HomePage = () => {
   const { keyword, pageNumber } = useParams();
@@ -16,7 +17,9 @@ const HomePage = () => {
 
   return (
     <>
-      {keyword && (
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
         <Link to="/" className="btn btn-light">
           Go Back
         </Link>
